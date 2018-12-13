@@ -1,0 +1,65 @@
+PersistenceVolumeClaim : Not actual memory but billboard and given as Pod Config to be used by Kubernetes
+
+Access Modes:
+
+ReadWriteOnce: Can be used by Single Node for both read and Read and write 
+ReadOnlyMany: Multiple nodes can read from this
+ReadWriteMany: Can be read and written to by many nodes
+
+➜  Docker_Kubernetes kubectl get storageclass
+NAME                 PROVISIONER                AGE
+standard (default)   k8s.io/minikube-hostpath   2d
+
+➜  Docker_Kubernetes kubectl describe storageclass
+Name:            standard
+IsDefaultClass:  Yes
+Annotations:     kubectl.kubernetes.io/last-applied-configuration={"apiVersion":"storage.k8s.io/v1","kind":"StorageClass","metadata":{"annotations":{"storageclass.beta.kubernetes.io/is-default-class":"true"},"labels":{"addonmanager.kubernetes.io/mode":"Reconcile"},"name":"standard","namespace":""},"provisioner":"k8s.io/minikube-hostpath"}
+,storageclass.beta.kubernetes.io/is-default-class=true
+Provisioner:           k8s.io/minikube-hostpath
+Parameters:            <none>
+AllowVolumeExpansion:  <unset>
+MountOptions:          <none>
+ReclaimPolicy:         Delete
+VolumeBindingMode:     Immediate
+Events:                <none>
+
+
+Constant
+REDIS_PORT
+PGUSER
+
+                        http://redis-cluster-ip-service         
+Deployment          --------------------------------------->    ClusterIP   Deployment
+multi-worker pod                                                Service     Redis pod
+
+
+Sectrets: Securely stores a piece of information in the
+cluster, such as database password
+
+Creating a Secret 
+
+kubectl create secret generic <secret_name> --from-literal key=value
+
+
+type of secret
+generic
+docker-registry
+tls
+
+➜  complex kubectl create secret generic pgpassword --from-literal PGPASSWORD=12345
+
+LoadBalancer Service :- Cloud Provider Provisioned Load LoadBalancer
+
+Nginx Ingress <===> Ingress-nginx
+
+Setup of Ingress-nginx changes depends on the environment
+
+default-backend Pod
+
+kind: Namespace -> to isolate different resources we r creating cluster
+
+
+
+
+
+
